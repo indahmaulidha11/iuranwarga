@@ -105,7 +105,7 @@
                         <i class="fa fa-image"></i>
                     </div>
                     <h5>TRANSAKSI</h5>
-                    <p>Mencatat transaksi pemasukan dan pengeluaran</p>
+                    <p>Mencatat transaksi pemasukan dan pengeluaran Warga </p>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
