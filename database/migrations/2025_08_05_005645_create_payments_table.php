@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('iduser')->constrained('users')->onDelete('cascade');
             $table->enum('period', ['mingguan', 'bulanan', 'tahunan']);
             $table->decimal('nominal', 10, 2);
-            $table->string('petugas'); // bisa diganti jadi foreign key jika petugas juga user
+            $table->string('petugas'); 
             $table->timestamps();
         });
 

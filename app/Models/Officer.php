@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Officer extends Model
 {
     //
+    protected $guarded = [
+        'name',
+        'position'
+    ];
 }
