@@ -17,3 +17,5 @@ Route::resource('officers', OfficerController::class);
 Route::resource('dues-categories', DuesCategoryController::class);
 Route::resource('dues-members', DuesMemberController::class);
 Route::resource('payments', PaymentController::class);
+
+Route::get('/login', function () {return view('login');})->name('login');
