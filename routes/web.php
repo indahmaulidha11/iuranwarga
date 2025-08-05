@@ -18,4 +18,9 @@ Route::resource('dues-categories', DuesCategoryController::class);
 Route::resource('dues-members', DuesMemberController::class);
 Route::resource('payments', PaymentController::class);
 
-Route::get('/login', function () {return view('login');})->name('login');
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+// Resource user (hanya bisa diakses setelah login)
+Route::resource('users', UserController::class)->middleware('auth');
