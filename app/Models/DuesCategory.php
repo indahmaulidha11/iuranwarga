@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class DuesCategory extends Model
 {
     //
-    protected $guarded = [];
+    use HasFactory;
+    protected $fillable = [
+        'period',
+        'nominal',
+        'status',
+    ];
+    public function duesMember()
+    {
+        return this->hasMany(DuesMember::class);
+    }
 }
