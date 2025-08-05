@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DuesCategory extends Model
 {
     //
-    use HasFactory;
-    protected $fillable = [
+    protected $guarded = [
         'period',
         'nominal',
         'status',

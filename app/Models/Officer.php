@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Officer extends Model
 {
     //
-    use HasFactory;
-    protected $fillable = [
+    protected $guarded = [
         'name',
-        'position',
+        'position'
     ];
 }
