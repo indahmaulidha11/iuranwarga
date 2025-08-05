@@ -24,7 +24,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/');
+            return view('halaman');
         }
 
         return back()->withErrors([
