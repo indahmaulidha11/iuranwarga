@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iuran Warga</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #fce4ec; /* soft pink background */
             font-family: 'Poppins', sans-serif;
         }
+
+        /* Navbar */
         .navbar {
             background-color: #f8bbd0; /* soft pink navbar */
         }
@@ -22,12 +29,27 @@
             color: #333 !important;
             font-weight: 500;
         }
+        .nav-link:hover {
+            color: #000 !important;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Card */
         .card {
             border: none;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             background-color: #fffde7; /* soft yellow card */
         }
+
+        /* Icon Circle */
         .icon-circle {
             width: 50px;
             height: 50px;
@@ -37,13 +59,10 @@
             justify-content: center;
             border-radius: 50%;
             margin-bottom: 10px;
+            font-size: 20px;
         }
-        .section-title {
-            text-align: center;
-            margin: 50px 0 30px;
-            font-weight: bold;
-            color: #333;
-        }
+
+        /* Login Icon */
         .login-icon {
             color: #333;
             font-size: 20px;
@@ -110,6 +129,7 @@
         </div>
     </div>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
