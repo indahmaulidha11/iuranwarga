@@ -23,9 +23,10 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect('/halaman');
-        }
+        $request->session()->regenerate();
+        return redirect()->route('halaman'); // diarahkan ke halaman utama
+    }
+
 
         return back()->withErrors([
             'username' => 'Username atau password salah.',
@@ -73,6 +74,33 @@ class UserController extends Controller
         ]);
 
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
+    }
+    public function showRegisterForm()
+    {
+        return view('register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'nohp' => 'nullable|string|max:20',
+            'address' => 'nullable|string',
+            'level' => 'required|in:warga,admin',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'nohp' => $request->nohp,
+            'address' => $request->address,
+            'level' => $request->level,
+        ]);
+
+        return redirect()->route('login')->with('success', 'Registrasi berhasil. Silakan login.');
     }
 
     public function show(string $id)

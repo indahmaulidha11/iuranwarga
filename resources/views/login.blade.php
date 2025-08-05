@@ -9,17 +9,21 @@
 <body class="d-flex align-items-center justify-content-center vh-100" style="background:#fce4ec;">
     <div class="card p-4" style="width: 350px; background:#fffde7;">
         <h4 class="text-center mb-3">Login</h4>
-        <form>
+        <form action="{{ url('/login') }}" method="POST">
+            @csrf
             <div class="mb-3">
                 <label>Username</label>
-                <input type="name" class="form-control">
+                <input type="text" name="username" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label>Password</label>
-                <input type="password" class="form-control">
+                <input type="password" name="password" class="form-control" required>
             </div>
             <button class="btn btn-warning w-100">Login</button>
         </form>
+        <p class="text-center mt-3">
+            Belum punya akun? <a href="{{ url('/register') }}">Daftar</a>
+        </p>
     </div>
 </body>
 </html>

@@ -20,9 +20,9 @@ class AuthAdmin
             if(Auth::user()->Level == 'admin'){
                 return $next($request);
             }
-            return redirect('/admin/login');
+            return redirect('/login');
         }
 
-        return redirect('/admin/login');
+        return redirect('/login');
     }
 }
