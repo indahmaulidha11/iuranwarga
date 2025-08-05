@@ -84,7 +84,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|confirmed',
             'nohp' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'level' => 'required|in:warga,admin',
@@ -123,7 +123,7 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-            'password' => 'nullable|string|min:6|confirmed',
+            'password' => 'nullable|string|confirmed',
             'nohp' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'level' => 'required|in:warga,admin',
