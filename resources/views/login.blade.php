@@ -9,6 +9,21 @@
 <body class="d-flex align-items-center justify-content-center vh-100" style="background:#fce4ec;">
     <div class="card p-4" style="width: 350px; background:#fffde7;">
         <h4 class="text-center mb-3">Login</h4>
+
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ url('/login') }}" method="POST">
             @csrf
             <div class="mb-3">

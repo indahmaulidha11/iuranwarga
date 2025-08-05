@@ -7,6 +7,7 @@ use App\Http\Controllers\DuesCategoryController;
 use App\Http\Controllers\DuesMemberController;
 use App\Http\Controllers\PaymentController;
 
+// Halaman utama
 Route::get('/', function () {
     return view('halaman');
 })->name('home');
@@ -20,7 +21,7 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [UserController::class, 'register']);
 
-// Resource routes (hanya untuk user yang login)
+// Resource routes (hanya bisa diakses setelah login)
 Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('officers', OfficerController::class);

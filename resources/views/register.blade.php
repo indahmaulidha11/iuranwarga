@@ -9,6 +9,17 @@
 <body class="d-flex align-items-center justify-content-center vh-100" style="background:#fce4ec;">
     <div class="card p-4" style="width: 400px; background:#fffde7;">
         <h4 class="text-center mb-3">Register</h4>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ url('/register') }}" method="POST">
             @csrf
             <div class="mb-3">
@@ -44,6 +55,7 @@
             </div>
             <button class="btn btn-warning w-100">Register</button>
         </form>
+
         <p class="text-center mt-3">
             Sudah punya akun? <a href="{{ url('/login') }}">Login</a>
         </p>

@@ -14,10 +14,10 @@ class AuthWarga
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+       public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check()){
-            if(Auth::user()->Level == 'warga'){
+        if (Auth::check()) {
+            if (Auth::user()->level == 'warga') {
                 return $next($request);
             }
             return redirect('/login');

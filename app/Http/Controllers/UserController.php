@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
     public function showLoginForm()
     {
         return view('login');
@@ -23,10 +22,9 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
-        return redirect()->route('home'); // diarahkan ke halaman utama
-    }
-
+            $request->session()->regenerate();
+            return redirect()->route('home');
+        }
 
         return back()->withErrors([
             'username' => 'Username atau password salah.',
@@ -75,6 +73,7 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
     }
+
     public function showRegisterForm()
     {
         return view('register');
@@ -91,7 +90,7 @@ class UserController extends Controller
             'level' => 'required|in:warga,admin',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'password' => Hash::make($request->password),
@@ -100,7 +99,9 @@ class UserController extends Controller
             'level' => $request->level,
         ]);
 
-        return redirect()->route('login')->with('success', 'Registrasi berhasil. Silakan login.');
+        Auth::login($user); // langsung login setelah register
+
+        return redirect()->route('home')->with('success', 'Registrasi berhasil. Selamat datang!');
     }
 
     public function show(string $id)
