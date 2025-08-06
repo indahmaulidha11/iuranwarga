@@ -14,6 +14,6 @@ class DuesCategory extends Model
     ];
     public function duesMember()
     {
-        return this->hasMany(DuesMember::class);
+        return $this->hasMany(DuesMember::class);
     }
 }

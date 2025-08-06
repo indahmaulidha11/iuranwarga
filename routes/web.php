@@ -41,8 +41,18 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/officers/{id}', [OfficersController::class, 'update'])->name('officers.update');
     Route::delete('/officers/{id}', [OfficersController::class, 'destroy'])->name('officers.destroy');
 
-    Route::get('/dues-category', [DuesCategoryController::class, 'index'])->name('admin.duesC');
-    Route::get('/dues-member', [DuesMemberController::class, 'index'])->name('admin.duesM');
+    Route::get('/', [DuesCategoryController::class, 'index'])->name('');
+    Route::get('/create', [DuesCategoryController::class, 'create'])->name('.create');
+    Route::post('/', [DuesCategoryController::class, 'store'])->name('.store');
+    Route::delete('/{id}', [DuesCategoryController::class, 'destroy'])->name('.destroy');
+
+    Route::get('/dues/members', [DuesMemberController::class, 'index'])->name('dues.members');
+    Route::get('/dues/members/create', [DuesMemberController::class, 'create'])->name('dues.members.create');
+    Route::post('/dues/members', [DuesMemberController::class, 'store'])->name('dues.members.store');
+    Route::get('/dues/members/{id}/edit', [DuesMemberController::class, 'edit'])->name('dues.members.edit');
+    Route::put('/dues/members/{id}', [DuesMemberController::class, 'update'])->name('dues.members.update');
+    Route::delete('/dues/members/{id}', [DuesMemberController::class, 'destroy'])->name('dues.members.destroy');
+
     Route::get('/payments', [PaymentController::class, 'index'])->name('admin.payment');
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
 });
