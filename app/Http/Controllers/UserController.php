@@ -68,7 +68,7 @@ class UserController extends Controller
     public function logoutwarga()
     {
         Auth::logout();
-        return redirect('/home');
+        return redirect('/');
     }
 
     // REGISTER
@@ -103,6 +103,6 @@ class UserController extends Controller
         if ($user->level === 'admin') {
             return redirect()->intended('admin');
         }
-        return redirect()->intended('/home');
+        return redirect()->intended('/');
     }
 }
