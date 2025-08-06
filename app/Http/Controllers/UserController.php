@@ -23,7 +23,12 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('home');
+
+            if (Auth::user()->level === 'admin') {
+                return redirect()->route('admin.dashboard'); // ke template admin
+            } else {
+                return redirect()->route('home'); // ke halaman biasa warga
+            }
         }
 
         return back()->withErrors([
