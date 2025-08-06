@@ -54,8 +54,13 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('/dues/members/{id}', [DuesMemberController::class, 'destroy'])->name('dues.members.destroy');
 
     Route::get('/payments', [PaymentController::class, 'index'])->name('admin.payment');
+    Route::get('/payment/{id}/confirm', [PaymentController::class, 'confirm']);
+    Route::post('/payment/{id}', [PaymentController::class, 'storeConfirmation']);
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
+
+    
 });
+
 
 
 // ROUTE UNTUK ADMIN
