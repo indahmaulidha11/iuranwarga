@@ -11,7 +11,7 @@ class PaymentController extends Controller
     {
         $id = Crypt::decrypt($id);
         $payment = Payment::with('user')->findOrFail($id);
-        return view('payment.confirm', compact('payment'));
+        return view('payment.confirm', compact('payments'));
     }
 
     public function storeConfirmation(Request $request, $id)
