@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function ($middleware) {
-        $middleware->alias('admin', AuthAdmin::class);
-        $middleware->alias('warga', AuthWarga::class);
+        $middleware->alias([
+            'admin' => AuthAdmin::class,
+            'warga' => AuthWarga::class,
+        ]);
     })
     ->create();
