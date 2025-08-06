@@ -25,8 +25,21 @@ Route::post('/register', [UserController::class, 'register']);
 // ROUTE UNTUK WARGA
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users');
-    Route::get('/officers', [OfficerController::class, 'index'])->name('admin.officer');
+
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    // Route::get('/officers', [OfficerController::class, 'index'])->name('officers');
+    // Route::get('/officers/create', [OfficerController::class, 'create'])->name('officers.create');
+    // Route::post('/officers', [OfficerController::class, 'store'])->name('officers.store');
+    // Route::get('/officers/{id}/edit', [OfficerController::class, 'edit'])->name('officers.edit');
+    // Route::put('/officers/{id}', [OfficerController::class, 'update'])->name('officers.update');
+    // Route::delete('/officers/{id}', [OfficerController::class, 'destroy'])->name('officers.destroy');
+
     Route::get('/dues-category', [DuesCategoryController::class, 'index'])->name('admin.duesC');
     Route::get('/dues-member', [DuesMemberController::class, 'index'])->name('admin.duesM');
     Route::get('/payments', [PaymentController::class, 'index'])->name('admin.payment');

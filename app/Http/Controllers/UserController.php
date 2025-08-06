@@ -105,4 +105,96 @@ class UserController extends Controller
         }
         return redirect()->intended('/');
     }
+    /**
+     * Tampilkan semua user.
+     */
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+
+    /**
+     * Form tambah user.
+     */
+    public function create()
+    {
+        return view('users.create');
+    }
+
+    /**
+     * Simpan user baru.
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6',
+            'nohp'     => 'nullable|string|max:20',
+            'address'  => 'nullable|string',
+            'level'    => 'required|in:warga,admin',
+        ]);
+
+        User::create([
+            'name'     => $request->name,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'nohp'     => $request->nohp,
+            'address'  => $request->address,
+            'level'    => $request->level,
+        ]);
+
+        return redirect()->route('admin.users')->with('success', 'User berhasil ditambahkan.');
+    }
+
+    /**
+     * Form edit user.
+     */
+    public function edit($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
+    }
+
+    /**
+     * Simpan perubahan user.
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+            'nohp'     => 'nullable|string|max:20',
+            'address'  => 'nullable|string',
+            'level'    => 'required|in:warga,admin',
+        ]);
+
+        $user->name     = $request->name;
+        $user->username = $request->username;
+        $user->nohp     = $request->nohp;
+        $user->address  = $request->address;
+        $user->level    = $request->level;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users')->with('success', 'User berhasil diperbarui.');
+    }
+
+    /**
+     * Hapus user.
+     */
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.users')->with('success', 'User berhasil dihapus.');
+    }
 }
