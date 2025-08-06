@@ -18,8 +18,8 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validation = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($validation)) {
@@ -49,8 +49,8 @@ class UserController extends Controller
     public function authwarga(Request $request)
     {
         $validation = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required'
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         if (Auth::attempt($validation)) {
