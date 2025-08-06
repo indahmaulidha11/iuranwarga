@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center mt-5">
-    <form action="/payment/{{ Crypt::encrypt($payment->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="/payments/{{ Crypt::encrypt($payment->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card shadow-sm p-4" style="max-width: 500px; width: 100%;">
             <h5>Konfirmasi Pembayaran</h5>
@@ -23,7 +23,7 @@
             <input type="file" name="proof" id="proof" class="form-control mb-3">
 
             <div class="d-flex gap-2">
-                <a href="/dashboard" class="btn btn-outline-secondary w-50">Batal</a>
+                <a href="/admin" class="btn btn-outline-secondary w-50">Batal</a>
                 <button type="submit" class="btn text-white w-50" style="background-color: #7b6efe">Konfirmasi</button>
             </div>
         </div>
