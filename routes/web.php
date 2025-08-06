@@ -3,7 +3,6 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\DuesCategoryController;
 use App\Http\Controllers\DuesMemberController;
 use App\Http\Controllers\OfficersController;
@@ -59,7 +58,7 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
 
-    
+
 });
 
 
