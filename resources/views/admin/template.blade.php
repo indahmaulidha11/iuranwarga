@@ -91,11 +91,9 @@
         </ul>
     </div>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <div class="content">
-        <!-- Konten halaman lain di sini -->
-        <h3>Selamat datang di halaman admin Iuran Warga</h3>
-        <p>Pilih menu dari sidebar di kiri untuk mengelola data.</p>
+        @yield('content')
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

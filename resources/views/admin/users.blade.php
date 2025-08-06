@@ -3,21 +3,15 @@
 @section('content')
 <div class="container-fluid mt-4">
     <div class="row">
-        <!-- Sidebar -->
-        <div class="col-md-2 bg-primary text-white py-4" style="min-height: 100vh;">
-            <h4 class="text-center mb-4">eProduct</h4>
-            <ul class="nav flex-column fw-semibold">
-                <li class="nav-item mb-2"><a class="nav-link text-white" href="#">Dashboard</a></li>
-                <li class="nav-item mb-2"><a class="nav-link text-white active" href="#">User</a></li>
-                <li class="nav-item mb-2"><a class="nav-link text-white" href="#">Product</a></li>
-                <li class="nav-item mb-2"><a class="nav-link text-white" href="#">Stock</a></li>
-                <li class="nav-item mb-2"><a class="nav-link text-white" href="#">Offer</a></li>
-            </ul>
-        </div>
-
         <!-- Content -->
         <div class="col-md-10 px-5 py-4">
-            <h4 class="mb-3">Users</h4>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="mb-0">Users</h4>
+                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                    <i class="fa fa-plus"></i> Tambah User
+                </a>
+            </div>
+
             <table class="table table-hover shadow-sm rounded bg-white">
                 <thead class="table-light">
                     <tr>
