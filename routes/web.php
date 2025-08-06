@@ -53,9 +53,9 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/dues/members/{id}', [DuesMemberController::class, 'update'])->name('dues.members.update');
     Route::delete('/dues/members/{id}', [DuesMemberController::class, 'destroy'])->name('dues.members.destroy');
 
-    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
-    Route::get('/payments/{id}/confirm', [PaymentController::class, 'confirm'])->name('payments.confirm');
-    Route::post('/payments/{id}', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/payment/{id}/confirm', [PaymentController::class, 'confirm'])->name('payment.confirm');
+    Route::post('/payment/{id}', [PaymentController::class, 'store'])->name('payment.store');
 
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
 

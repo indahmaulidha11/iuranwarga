@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container d-flex justify-content-center mt-5">
-    <form action="/payments/{{ Crypt::encrypt($payment->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="/payment/{{ Crypt::encrypt($payment->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card shadow-sm p-4" style="max-width: 500px; width: 100%;">
             <h5>Konfirmasi Pembayaran</h5>

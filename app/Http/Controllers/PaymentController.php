@@ -11,10 +11,10 @@ class PaymentController extends Controller
     {
         $id = Crypt::decrypt($id);
         $payment = Payment::with('user')->findOrFail($id);
-        return view('payment.confirm', compact('payments'));
+        return view('payment.confirm', compact('payment'));
     }
 
-    public function storeConfirmation(Request $request, $id)
+    public function store(Request $request, $id)
     {
         $request->validate([
             'proof' => 'required|image|mimes:jpeg,png,jpg|max:2048',
