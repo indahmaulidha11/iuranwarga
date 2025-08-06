@@ -14,72 +14,64 @@ class UserController extends Controller
         return view('login');
     }
 
+    // LOGIN ADMIN
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
+        $validation = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            // Redirect berdasarkan level
+        if (Auth::attempt($validation)) {
+            // cek apakah user admin
             if (Auth::user()->level === 'admin') {
-                return redirect()->route('admin.dashboard'); // ke route admin
+                return redirect()->intended('admin');
             }
-
-            return redirect()->route('home'); // ke route warga
+            // jika bukan admin diarahkan ke dashboard warga
+            return redirect()->intended('/home');
         }
 
-        return back()->withErrors([
-            'username' => 'Username atau password salah.',
-        ]);
+        return redirect()->back()->with('messages', 'Login unsuccessful');
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/login');
+        return redirect('/admin/login');
     }
 
-    public function index()
+    // LOGIN WARGA
+    public function warga()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        return view('halaman');
     }
 
-    public function create()
+    public function authwarga(Request $request)
     {
-        return view('users.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'nohp' => 'nullable|string|max:20',
-            'address' => 'nullable|string',
-            'level' => 'required|in:warga,admin',
+        $validation = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'nohp' => $request->nohp,
-            'address' => $request->address,
-            'level' => $request->level,
-        ]);
+        if (Auth::attempt($validation)) {
+            // cek apakah user warga
+            if (Auth::user()->level === 'warga') {
+                return redirect()->intended('/home');
+            }
+            // jika bukan warga diarahkan ke admin
+            return redirect()->intended('admin');
+        }
 
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
+        return redirect()->back()->with('messages', 'Login unsuccessful');
     }
 
+    public function logoutwarga()
+    {
+        Auth::logout();
+        return redirect('/home');
+    }
+
+    // REGISTER
     public function showRegisterForm()
     {
         return view('register');
@@ -89,7 +81,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed',
             'nohp' => 'nullable|string|max:20',
             'address' => 'nullable|string',
@@ -98,63 +90,19 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
             'nohp' => $request->nohp,
             'address' => $request->address,
             'level' => $request->level,
         ]);
 
-        Auth::login($user); // langsung login setelah register
+        Auth::login($user);
 
-        return redirect()->route('home')->with('success', 'Registrasi berhasil. Selamat datang!');
-    }
-
-    public function show(string $id)
-    {
-        $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
-    }
-
-    public function edit(string $id)
-    {
-        $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $user = User::findOrFail($id);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $user->id,
-            'password' => 'nullable|string|confirmed',
-            'nohp' => 'nullable|string|max:20',
-            'address' => 'nullable|string',
-            'level' => 'required|in:warga,admin',
-        ]);
-
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->nohp = $request->nohp;
-        $user->address = $request->address;
-        $user->level = $request->level;
-
-        if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+        // redirect sesuai level
+        if ($user->level === 'admin') {
+            return redirect()->intended('admin');
         }
-
-        $user->save();
-
-        return redirect()->route('users.index')->with('success', 'User berhasil diupdate.');
-    }
-
-    public function destroy(string $id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->intended('/home');
     }
 }
