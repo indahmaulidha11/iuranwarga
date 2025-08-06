@@ -41,9 +41,9 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/officers/{id}', [OfficersController::class, 'update'])->name('officers.update');
     Route::delete('/officers/{id}', [OfficersController::class, 'destroy'])->name('officers.destroy');
 
-    Route::get('/categori', [DuesCategoryController::class, 'index'])->name('');
-    Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('.create');
-    Route::post('/categori', [DuesCategoryController::class, 'store'])->name('.store');
+    Route::get('/categori', [DuesCategoryController::class, 'index'])->name('dues.categori');
+    Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('categori.create');
+    Route::post('/categori', [DuesCategoryController::class, 'store'])->name('categori.store');
     Route::delete('/categori/{id}', [DuesCategoryController::class, 'destroy'])->name('.destroy');
 
     Route::get('/dues/members', [DuesMemberController::class, 'index'])->name('dues.members');

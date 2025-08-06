@@ -59,22 +59,22 @@
         <a class="navbar-brand" href="#">IURAN<span style="color:#fff;">WARGA</span></a>
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="{{ route('admin.users') }}" class="nav-link">
+                <a href="{{ route('users') }}" class="nav-link">
                     <i class="fa fa-users nav-icon"></i> Kelola User
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.officers') }}" class="nav-link">
+                <a href="{{ route('officers') }}" class="nav-link">
                     <i class="fa fa-user-tie nav-icon"></i> Kelola Officer
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.dues.categories') }}" class="nav-link">
+                <a href="{{ route('dues.categori') }}" class="nav-link">
                     <i class="fa fa-list nav-icon"></i> Kategori Iuran
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.dues.members') }}" class="nav-link">
+                <a href="{{ route('dues.members') }}" class="nav-link">
                     <i class="fa fa-users-cog nav-icon"></i> Anggota Iuran
                 </a>
             </li>
