@@ -79,7 +79,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('admin.payments') }}" class="nav-link">
+                <a href="{{ route('payments') }}" class="nav-link">
                     <i class="fa fa-money-bill nav-icon"></i> Pembayaran
                 </a>
             </li>
