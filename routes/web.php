@@ -44,7 +44,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/categori', [DuesCategoryController::class, 'index'])->name('dues.categori');
     Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('categori.create');
     Route::post('/categori', [DuesCategoryController::class, 'store'])->name('categori.store');
-    Route::delete('/categori/{id}', [DuesCategoryController::class, 'destroy'])->name('.destroy');
+    Route::delete('/categori/{id}', [DuesCategoryController::class, 'destroy'])->name('categori.destroy');
 
     Route::get('/dues/members', [DuesMemberController::class, 'index'])->name('dues.members');
     Route::get('/dues/members/create', [DuesMemberController::class, 'create'])->name('dues.members.create');
@@ -54,7 +54,7 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('/dues/members/{id}', [DuesMemberController::class, 'destroy'])->name('dues.members.destroy');
 
     Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
-    Route::get('/payment/{id}/confirm', [PaymentController::class, 'confirm'])->name('payment.confirm');
+    Route::get('/payment/{id}/confirm', [PaymentController::class, 'confirmConfirmation'])->name('payment.confirm');
     Route::post('/payment/{id}', [PaymentController::class, 'store'])->name('payment.store');
 
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
