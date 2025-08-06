@@ -21,14 +21,15 @@ class UserController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($credentials)) {
+         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            // Redirect berdasarkan level
             if (Auth::user()->level === 'admin') {
-                return redirect()->route('admin.dashboard'); // ke template admin
-            } else {
-                return redirect()->route('home'); // ke halaman biasa warga
+                return redirect()->route('admin.dashboard'); // ke route admin
             }
+
+            return redirect()->route('home'); // ke route warga
         }
 
         return back()->withErrors([
