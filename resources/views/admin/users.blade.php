@@ -12,6 +12,13 @@
                 </a>
             </div>
 
+            <!-- Pesan sukses -->
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <table class="table table-hover shadow-sm rounded bg-white">
                 <thead class="table-light">
                     <tr>
@@ -25,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $key => $user)
+                    @forelse ($users as $key => $user)
                     <tr class="{{ $key % 2 == 0 ? 'bg-light' : '' }}">
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $user->name }}</td>
@@ -43,18 +50,25 @@
                                     Action
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Edit</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('users.edit', $user->id) }}">Edit</a>
+                                    </li>
+                                    <li>
+                                        <form action="{{ route('users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus user ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
-                    @endforeach
-                    @if ($users->isEmpty())
+                    @empty
                     <tr>
                         <td colspan="7" class="text-center text-muted">No users found.</td>
                     </tr>
-                    @endif
+                    @endforelse
                 </tbody>
             </table>
         </div>
