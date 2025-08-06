@@ -1,4 +1,4 @@
-@extends('template.admin') <!-- Ganti jika layout kamu punya nama lain -->
+@extends('admin.template') <!-- Ganti jika layout kamu punya nama lain -->
 
 @section('content')
 <div class="container-fluid mt-4">

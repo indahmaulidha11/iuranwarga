@@ -56,7 +56,7 @@ class UserController extends Controller
         if (Auth::attempt($validation)) {
             // cek apakah user warga
             if (Auth::user()->level === 'warga') {
-                return redirect()->intended('/home');
+                return redirect()->intended('/');
             }
             // jika bukan warga diarahkan ke admin
             return redirect()->intended('admin');
