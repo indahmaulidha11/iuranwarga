@@ -28,7 +28,7 @@ class UserController extends Controller
                 return redirect()->intended('admin');
             }
             // jika bukan admin diarahkan ke dashboard warga
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
 
         return redirect()->back()->with('messages', 'Login unsuccessful');
