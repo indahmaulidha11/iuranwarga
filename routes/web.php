@@ -23,14 +23,6 @@ Route::get('/register', [UserController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [UserController::class, 'register']);
 
 // ROUTE UNTUK WARGA
-Route::middleware(['warga'])->group(function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('warga.dashboard');
-    Route::resource('dues-members', DuesMemberController::class);
-    Route::resource('payments', PaymentController::class);
-    Route::get('/member/logout', [UserController::class, 'logoutmember'])->name('member.logout');
-});
-
-// ROUTE UNTUK ADMIN
 Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('users', UserController::class);
@@ -40,3 +32,13 @@ Route::middleware(['admin'])->group(function () {
     Route::resource('payments', PaymentController::class)->only(['index']);
     Route::get('/admin/logout', [UserController::class, 'logout'])->name('admin.logout');
 });
+
+
+// ROUTE UNTUK ADMIN
+Route::middleware(['warga'])->group(function () {
+    Route::get('/dashboard', [UserController::class, 'warga'])->name('warga.dashboard');
+    Route::resource('dues-members', DuesMemberController::class);
+    Route::resource('payments', PaymentController::class);
+    Route::get('/warga/logout', [UserController::class, 'logoutwarga'])->name('warga.logout');
+});
+
