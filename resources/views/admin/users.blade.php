@@ -7,7 +7,7 @@
         <div class="col-md-10 px-5 py-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="mb-0">Users</h4>
-                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                <a href="{{ route('users.create') }}" class="btn btn-warning">
                     <i class="fa fa-plus"></i> Tambah User
                 </a>
             </div>

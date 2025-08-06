@@ -81,8 +81,8 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string',
             'nohp' => 'nullable|string|max:20',
             'address' => 'nullable|string',
             'level' => 'required|in:warga,admin',
@@ -90,7 +90,7 @@ class UserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'username' => $request->name,
             'password' => Hash::make($request->password),
             'nohp' => $request->nohp,
             'address' => $request->address,
@@ -154,7 +154,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('admin.users', compact('users'));
     }
 
     /**
