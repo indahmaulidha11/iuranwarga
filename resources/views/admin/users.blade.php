@@ -1,9 +1,9 @@
-@extends('admin.template') <!-- Ganti jika layout kamu punya nama lain -->
+@extends('admin.template') 
 
 @section('content')
 <div class="container-fluid mt-4">
     <div class="row">
-        <!-- Content -->
+        
         <div class="col-md-10 px-5 py-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4 class="mb-0">Users</h4>
@@ -12,7 +12,7 @@
                 </a>
             </div>
 
-            <!-- Pesan sukses -->
+        
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}

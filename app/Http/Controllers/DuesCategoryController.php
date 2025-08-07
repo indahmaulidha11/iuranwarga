@@ -7,15 +7,18 @@ use Illuminate\Http\Request;
 
 class DuesCategoryController extends Controller
 {
+ 
+
     public function index()
     {
-        $data['categories'] = DuesCategory::all();
-        return view('admin.dues.categories.index', $data);
+        $dues_categories = DuesCategory::all();
+        return view('admin.categories-index', compact('dues_categories'));
     }
+
 
     public function create()
     {
-        return view('admin.dues.categories.create');
+        return view('admin.create-category');
     }
 
     public function store(Request $request)
@@ -27,7 +30,7 @@ class DuesCategoryController extends Controller
         ]);
 
         DuesCategory::create($request->all());
-        return redirect()->route('admin.dues.categories')->with('success', 'Kategori berhasil ditambahkan.');
+        return redirect()->route('dues.categori')->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     public function destroy($id)

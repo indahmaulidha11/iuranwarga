@@ -33,4 +33,10 @@ class PaymentController extends Controller
 
         return redirect('/admin')->with('success', 'Bukti pembayaran berhasil dikirim.');
     }
-}
+    public function index()
+    {
+        $payments = Payment::with(['user', 'officer', 'duesMember.duesCategory'])->get();
+        return view('admin.payments-index', compact('payments'));
+    }
+
+    }

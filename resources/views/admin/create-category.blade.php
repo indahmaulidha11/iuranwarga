@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('admin.template')
 
 @section('content')
 <div class="container mt-4">
     <h3>Tambah Kategori Iuran</h3>
-    <form action="{{ route('admin.dues.categories.store') }}" method="POST">
+    <form action="{{ route('categori.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="period" class="form-label">Periode</label>
@@ -26,7 +26,7 @@
             </select>
         </div>
         <button class="btn btn-success">Simpan</button>
-        <a href="{{ route('admin.dues.categories') }}" class="btn btn-secondary">Kembali</a>
+        <a href="{{ route('dues.categori') }}" class="btn btn-secondary">Kembali</a>
     </form>
 </div>
 @endsection
