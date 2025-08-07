@@ -8,7 +8,7 @@
         <div class="col-md-10 px-5 py-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>Data Anggota Iuran</h4>
-                <a href="{{ route('admin.dues.members.create') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('dues.members.create') }}" class="btn btn-success btn-sm">
                     <i class="fa fa-plus"></i> Tambah Anggota
                 </a>
             </div>
@@ -34,9 +34,9 @@
                                     Aksi
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('admin.dues.members.edit', $member->id) }}">Edit</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('dues.members.edit', $member->id) }}">Edit</a></li>
                                     <li>
-                                        <form action="{{ route('admin.dues.members.destroy', $member->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus?')">
+                                        <form action="{{ route('dues.members.destroy', $member->id) }}" method="POST" onsubmit="return confirm('Yakin ingin hapus?')">
                                             @csrf
                                             @method('DELETE')
                                             <button class="dropdown-item text-danger">Hapus</button>

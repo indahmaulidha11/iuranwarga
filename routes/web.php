@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DuesCategoryController;
 use App\Http\Controllers\DuesMemberController;
-use App\Http\Controllers\OfficersController;
+use App\Http\Controllers\OfficerController;
 use App\Http\Controllers\PaymentController;
 
 // Halaman utama
@@ -33,12 +33,12 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::get('/officers', [OfficersController::class, 'index'])->name('officers');
-    Route::get('/officers/create', [OfficersController::class, 'create'])->name('officers.create');
-    Route::post('/officers', [OfficersController::class, 'store'])->name('officers.store');
-    Route::get('/officers/{id}/edit', [OfficersController::class, 'edit'])->name('officers.edit');
-    Route::put('/officers/{id}', [OfficersController::class, 'update'])->name('officers.update');
-    Route::delete('/officers/{id}', [OfficersController::class, 'destroy'])->name('officers.destroy');
+    Route::get('/officers', [OfficerController::class, 'index'])->name('officers');
+    Route::get('/officers/create', [OfficerController::class, 'create'])->name('officers.create');
+    Route::post('/officers', [OfficerController::class, 'store'])->name('officers.store');
+    Route::get('/officers/{id}/edit', [OfficerController::class, 'edit'])->name('officers.edit');
+    Route::put('/officers/{id}', [OfficerController::class, 'update'])->name('officers.update');
+    Route::delete('/officers/{id}', [OfficerController::class, 'destroy'])->name('officers.destroy');
 
     Route::get('/categori', [DuesCategoryController::class, 'index'])->name('dues.categori');
     Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('categori.create');

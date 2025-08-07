@@ -12,14 +12,14 @@ class DuesMemberController extends Controller
     public function index()
     {
         $members = DuesMember::with(['user', 'category'])->get();
-        return view('dues_members.index', compact('members'));
+        return view('admin.duesMember', compact('members'));
     }
 
     public function create()
     {
         $users = User::all();
         $categories = DuesCategory::all();
-        return view('dues_members.create', compact('users', 'categories'));
+        return view('admin.create-duesM', compact('users', 'categories'));
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class DuesMemberController extends Controller
         ]);
 
         DuesMember::create($request->all());
-        return redirect()->route('admin.dues.members')->with('success', 'Anggota iuran berhasil ditambahkan.');
+        return redirect()->route('dues.members')->with('success', 'Anggota iuran berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -38,7 +38,7 @@ class DuesMemberController extends Controller
         $member = DuesMember::findOrFail($id);
         $users = User::all();
         $categories = DuesCategory::all();
-        return view('dues_members.edit', compact('member', 'users', 'categories'));
+        return view('admin.edit-duesM', compact('member', 'users', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -51,7 +51,7 @@ class DuesMemberController extends Controller
         ]);
 
         $member->update($request->all());
-        return redirect()->route('admin.dues.members')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('dues.members')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class DuesMemberController extends Controller
         $member = DuesMember::findOrFail($id);
         $member->delete();
 
-        return redirect()->route('admin.dues.members')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('dues.members')->with('success', 'Data berhasil dihapus.');
     }
 }
