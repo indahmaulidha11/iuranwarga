@@ -35,10 +35,6 @@
                 <input type="password" name="password" class="form-control" required>
             </div>
             <button class="btn btn-warning w-100">Login</button>
-        </form>
-        <p class="text-center mt-3">
-            Belum punya akun? <a href="{{ url('/register') }}">Daftar</a>
-        </p>
     </div>
 </body>
 </html>

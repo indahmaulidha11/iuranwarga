@@ -71,40 +71,6 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    // REGISTER
-    public function showRegisterForm()
-    {
-        return view('register');
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'password' => 'required|string',
-            'nohp' => 'nullable|string|max:20',
-            'address' => 'nullable|string',
-            'level' => 'required|in:warga,admin',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'username' => $request->name,
-            'password' => Hash::make($request->password),
-            'nohp' => $request->nohp,
-            'address' => $request->address,
-            'level' => $request->level,
-        ]);
-
-        Auth::login($user);
-
-        // redirect sesuai level
-        if ($user->level === 'admin') {
-            return redirect()->intended('admin');
-        }
-        return redirect()->intended('/');
-    }
     /**
      * Tampilkan semua user.
      */
