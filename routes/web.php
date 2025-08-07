@@ -42,10 +42,10 @@ Route::middleware(['admin'])->group(function () {
 
     Route::get('/categori', [DuesCategoryController::class, 'index'])->name('dues.categori');
     Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('categori.create');
-    Route::post('/categori', [DuesCategoryController::class, 'store'])->name('categori.store');Route::get('/categori/{id}/edit', [KategoriController::class, 'edit'])->name('categori.edit');
+    Route::post('/categori', [DuesCategoryController::class, 'store'])->name('categori.store');
+    Route::get('/categori/{id}/edit', [DuesCategoryController::class, 'edit'])->name('categori.edit');
     Route::put('/categori/{id}', [DuesCategoryController::class, 'update'])->name('categori.update');
     Route::delete('/categori/{id}', [DuesCategoryController::class, 'destroy'])->name('categori.destroy');
-
 
 
 

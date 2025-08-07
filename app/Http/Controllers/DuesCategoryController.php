@@ -24,6 +24,7 @@ class DuesCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'required|string|max:255',
             'period' => 'required|in:mingguan,bulanan,tahunan',
             'nominal' => 'required|numeric',
             'status' => 'required|boolean',

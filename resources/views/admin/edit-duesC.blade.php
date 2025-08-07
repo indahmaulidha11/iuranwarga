@@ -4,11 +4,14 @@
 <div class="container mt-4">
     <h3>Edit Kategori Iuran</h3>
 
-    
-    
-    <div class="mb-3">
-        <label for="name">Nama Kategori</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $category->name) }}">
+    {{-- FORM START --}}
+    <form action="{{ route('categori.update', $category->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+
+        <div class="mb-3">
+            <label for="name">Nama Kategori</label>
+            <input type="text" name="name" class="form-control" value="{{ old('name', $category->name) }}">
         </div>
 
         <div class="mb-3">
@@ -37,13 +40,15 @@
                 <option value="0" {{ $category->status == 0 ? 'selected' : '' }}>Nonaktif</option>
             </select>
         </div>
-        
-        <form action="{{ route('categori.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-        </form>
+
         <button type="submit" class="btn btn-success">Simpan Perubahan</button>
+    </form>
+    {{-- FORM END --}}
+
+    <form action="{{ route('categori.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger btn-sm mt-2">Hapus</button>
     </form>
 </div>
 @endsection
