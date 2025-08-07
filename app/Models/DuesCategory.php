@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DuesCategory extends Model
 {
     //
-    protected $guarded = [
+    protected $fillable = [
         'period',
         'nominal',
         'status',
