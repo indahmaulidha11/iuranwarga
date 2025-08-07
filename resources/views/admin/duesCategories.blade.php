@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('admin.template')
 
 @section('content')
 <div class="container mt-4">
     <h3>Kategori Iuran</h3>
-    <a href="{{ route('admin.dues.categories.create') }}" class="btn btn-primary mb-3">+ Tambah Kategori</a>
+    <a href="{{ route('categori.create') }}" class="btn btn-primary mb-3">+ Tambah Kategori</a>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -27,7 +27,7 @@
                 <td>Rp{{ number_format($cat->nominal, 0, ',', '.') }}</td>
                 <td>{{ $cat->status ? 'Aktif' : 'Nonaktif' }}</td>
                 <td>
-                    <form action="{{ route('admin.dues.categories.destroy', $cat->id) }}" method="POST" onsubmit="return confirm('Hapus kategori ini?')">
+                    <form action="{{ route('dues.categories.destroy', $cat->id) }}" method="POST" onsubmit="return confirm('Hapus kategori ini?')">
                         @csrf @method('DELETE')
                         <button class="btn btn-danger btn-sm">Hapus</button>
                     </form>

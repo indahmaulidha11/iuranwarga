@@ -44,6 +44,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/create-categori', [DuesCategoryController::class, 'create'])->name('categori.create');
     Route::post('/categori', [DuesCategoryController::class, 'store'])->name('categori.store');
     Route::delete('/categori/{id}', [DuesCategoryController::class, 'destroy'])->name('categori.destroy');
+    Route::get('/categori/{id}/edit', [DuesCategoryController::class, 'edit'])->name('categori.edit');
+    Route::put('/categori/{id}', [DuesCategoryController::class, 'update'])->name('categori.update');
+
+
+
 
     Route::get('/dues/members', [DuesMemberController::class, 'index'])->name('dues.members');
     Route::get('/dues/members/create', [DuesMemberController::class, 'create'])->name('dues.members.create');
