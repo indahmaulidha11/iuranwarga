@@ -2,16 +2,18 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow p-4" style="background-color: #ffe6f0; border-radius: 10px;">
+    <div class="card shadow p-4" 
+         style="background-color: rgba(255, 230, 240, 0.8); backdrop-filter: blur(10px); border-radius: 12px;">
+        
         <h3 class="mb-4 text-center">Tambah Kategori Iuran</h3>
 
         <form action="{{ route('categori.store') }}" method="POST">
             @csrf
 
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="name" class="form-label">Nama Kategori</label>
                 <input type="text" name="name" class="form-control" required>
-            </div>
+            </div> -->
 
             <div class="mb-3">
                 <label for="period" class="form-label">Periode</label>

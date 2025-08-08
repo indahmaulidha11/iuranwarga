@@ -1,9 +1,9 @@
-@extends('admin.template')
+<!-- @extends('admin.template')
 
 @section('content')
 <div class="container mt-4">
     <h3>Kategori Iuran</h3>
-    <a href="{{ route('categori.create') }}" class="btn btn-warning btn-sm">+ Tambah Kategori</a>
+    <a href="{{ route('categori.create') }}" class="btn btn-warning btn-sm"> + Tambah </a>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -37,4 +37,5 @@
         </tbody>
     </table>
 </div>
-@endsection
+@endsection -->
+    

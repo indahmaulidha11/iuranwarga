@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow p-4" style="background-color: #ffe6f0; border-radius: 12px;">
+    <div class="card shadow p-4" 
+         style="background-color: rgba(255, 230, 240, 0.8); backdrop-filter: blur(10px); border-radius: 12px;">
+        
         <h3 class="mb-4 text-center">Edit Kategori Iuran</h3>
 
         {{-- FORM EDIT --}}
@@ -12,7 +14,8 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label">Nama Kategori</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name', $category->name) }}">
+                <input type="text" name="name" class="form-control" 
+                       value="{{ old('name', $category->name) }}">
             </div>
 
             <div class="mb-3">
@@ -31,7 +34,8 @@
 
             <div class="mb-3">
                 <label for="nominal" class="form-label">Nominal</label>
-                <input type="number" name="nominal" class="form-control" value="{{ old('nominal', $category->nominal) }}">
+                <input type="number" name="nominal" class="form-control" 
+                       value="{{ old('nominal', $category->nominal) }}">
             </div>
             
             <div class="mb-3">
@@ -49,7 +53,8 @@
         </form>
 
         {{-- FORM HAPUS --}}
-        <form action="{{ route('categori.destroy', $category->id) }}" method="POST" class="mt-3" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+        <form action="{{ route('categori.destroy', $category->id) }}" method="POST" 
+              class="mt-3" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger w-100">Hapus</button>
