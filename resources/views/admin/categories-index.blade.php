@@ -1,11 +1,19 @@
 @extends('admin.template')
 
 @section('content')
-    <div class="container">
-        <h1>Daftar Kategori Iuran</h1>
-        <a href="{{ route('categori.create') }}" class="btn btn-primary mb-3">Tambah Kategori</a>
+<div class="container mt-4">
+    <div class="card shadow p-4" style="background-color: #ffe6f0; border-radius: 10px;">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="m-0">Daftar Kategori Iuran</h1>
+            <a href="{{ route('categori.create') }}" 
+               class="btn btn-warning btn-sm" 
+               style="width: auto; padding: 6px 12px;">
+                Tambah Kategori
+            </a>
+        </div>
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>No</th>
@@ -31,4 +39,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection
