@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="card shadow p-4" 
+    <div class="card shadow p-4"
          style="background-color: rgba(255, 230, 240, 0.8); backdrop-filter: blur(10px); border-radius: 12px;">
-        
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="m-0">Daftar Kategori Iuran</h1>
-            <a href="{{ route('categori.create') }}" 
+            <a href="{{ route('categori.create') }}"
                class="btn btn-warning btn-sm px-3 py-2">
                 + Tambah Kategori
             </a>
@@ -40,6 +40,9 @@
                 @endforeach
             </tbody>
         </table>
+         <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary mb-3">
+            <i class="fa fa-arrow-left"></i> Kembali ke Dashboard
+        </a>
     </div>
 </div>
 @endsection

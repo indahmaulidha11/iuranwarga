@@ -55,6 +55,9 @@
                     @endforelse
                 </tbody>
             </table>
+             <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary mb-3">
+                <i class="fa fa-arrow-left"></i> Kembali ke Dashboard
+            </a>
         </div>
     </div>
     <!-- End Card Wrapper -->

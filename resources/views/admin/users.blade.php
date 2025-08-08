@@ -1,10 +1,10 @@
-@extends('admin.template') 
+@extends('admin.template')
 
 @section('content')
 <div class="container-fluid mt-4">
     <div class="row">
         <div class="col-md-10 px-5 py-4">
-            
+
             <!-- Card Wrapper -->
             <div class="card shadow-sm border-0" style="background-color: #ffe6eb;">
                 <div class="card-body">
@@ -73,6 +73,11 @@
                             @endforelse
                         </tbody>
                     </table>
+
+                     <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary mb-3">
+                        <i class="fa fa-arrow-left"></i> Kembali ke Dashboard
+                    </a>
+                    
                 </div>
             </div>
             <!-- End Card Wrapper -->
