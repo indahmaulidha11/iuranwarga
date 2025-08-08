@@ -58,6 +58,8 @@
     <div class="sidebar d-flex flex-column">
         <a class="navbar-brand" href="#">IURAN<span style="color:#fff;">WARGA</span></a>
         <ul class="nav flex-column">
+            
+            </li>
             <li class="nav-item">
                 <a href="{{ route('users') }}" class="nav-link">
                     <i class="fa fa-users nav-icon"></i> Kelola User

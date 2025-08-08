@@ -14,25 +14,31 @@ class UserController extends Controller
         return view('login');
     }
 
-    // LOGIN ADMIN
-    public function login(Request $request)
-    {
-        $validation = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
 
-        if (Auth::attempt($validation)) {
-            // cek apakah user admin
-            if (Auth::user()->level === 'admin') {
-                return redirect()->intended('admin');
-            }
-            // jika bukan admin diarahkan ke dashboard warga
-            return redirect()->intended('/');
+    public function login(Request $request)
+{
+    $credentials = $request->validate([
+        'username' => 'required|string',
+        'password' => 'required|string',
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $user = Auth::user();
+
+        if ($user->level === 'admin') {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->level === 'warga') {
+            return redirect()->route('home');
         }
 
-        return redirect()->back()->with('messages', 'Login unsuccessful');
+        Auth::logout();
+        return redirect('/login')->with('messages', 'Level user tidak dikenali.');
     }
+
+    return back()->with('messages', 'Login gagal. Periksa kembali username dan password.');
+}
+
+
 
     public function logout()
     {
@@ -40,57 +46,35 @@ class UserController extends Controller
         return redirect('/admin/login');
     }
 
-    // LOGIN WARGA
-    public function warga()
+    public function dashboard()
     {
-        return view('halaman');
-    }
-
-    public function authwarga(Request $request)
-    {
-        $validation = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string',
-        ]);
-
-        if (Auth::attempt($validation)) {
-            // cek apakah user warga
-            if (Auth::user()->level === 'warga') {
-                return redirect()->intended('/');
-            }
-            // jika bukan warga diarahkan ke admin
-            return redirect()->intended('admin');
+        if (!Auth::check()) {
+            return redirect('/admin/login')->with('messages', 'Silakan login terlebih dahulu.');
         }
 
-        return redirect()->back()->with('messages', 'Login unsuccessful');
+        $user = Auth::user();
+
+        if ($user->level === 'admin') {
+            return view('admin.dashboard', compact('user'));
+        } elseif ($user->level === 'warga') {
+            return view('halaman', compact('user'));
+        }
+
+        return abort(403, 'Akses ditolak.');
     }
 
-    public function logoutwarga()
-    {
-        Auth::logout();
-        return redirect('/');
-    }
-
-    /**
-     * Tampilkan semua user.
-     */
     public function index()
     {
         $users = User::all();
         return view('admin.users', compact('users'));
     }
 
-    /**
-     * Form tambah user.
-     */
+
     public function create()
     {
         return view('admin.create-users');
     }
 
-    /**
-     * Simpan user baru.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -114,18 +98,14 @@ class UserController extends Controller
         return redirect()->route('users')->with('success', 'User berhasil ditambahkan.');
     }
 
-    /**
-     * Form edit user.
-     */
+
     public function edit($id)
     {
         $user = User::findOrFail($id);
         return view('admin.edit-users', compact('user'));
     }
 
-    /**
-     * Simpan perubahan user.
-     */
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -138,24 +118,23 @@ class UserController extends Controller
             'level'    => 'required|in:warga,admin',
         ]);
 
-        $user->name     = $request->name;
-        $user->username = $request->username;
-        $user->nohp     = $request->nohp;
-        $user->address  = $request->address;
-        $user->level    = $request->level;
+        $user->update([
+            'name'     => $request->name,
+            'username' => $request->username,
+            'nohp'     => $request->nohp,
+            'address'  => $request->address,
+            'level'    => $request->level,
+        ]);
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
+            $user->save();
         }
-
-        $user->save();
 
         return redirect()->route('users')->with('success', 'User berhasil diperbarui.');
     }
 
-    /**
-     * Hapus user.
-     */
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
